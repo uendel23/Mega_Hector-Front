@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -14,7 +14,7 @@ import { HttpClientModule} from '@angular/common/http';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, RouterOutlet,  Toolbar, FormsModule, Resultado, MatDialogModule, HttpClientModule],
+  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, RouterOutlet,  Toolbar, FormsModule, Resultado, MatDialogModule, HttpClientModule,],
   templateUrl: './home.html',
   styleUrl: './home.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -24,25 +24,41 @@ export class Home {
   unidades: number = 0;
   hectolitros: number = 0;
 
-  constructor(private dialog: MatDialog, private calculoService: CalculoService) {}
+  constructor(private cdr: ChangeDetectorRef,
+    private dialog: MatDialog,
+    private calculoService: CalculoService) {}
 
   calcular() {
     this.calculoService.calcularResultado(this.embalagem, this.unidades, this.hectolitros)
       .subscribe({
         next: (response) => {
-          this.dialog.open(Resultado, {
+          const dialogRef = this.dialog.open(Resultado, {
             data: { resultado: response.resultado },
             width: '500px'
+          });
+          dialogRef.afterClosed().subscribe(() => {
+            this.limparCampos();
+            this.cdr.markForCheck();
           });
         },
         error: (error) => {
           console.error('Erro ao calcular:', error);
-          this.dialog.open(Resultado, {
+          const dialogRef = this.dialog.open(Resultado, {
             data: { erro: 'Erro ao realizar o cálculo. Tente novamente.' },
             width: '300px'
           });
+          dialogRef.afterClosed().subscribe(() => {
+            this.limparCampos();
+            this.cdr.markForCheck();
+          });
         }
       });
+  }
+
+  private limparCampos() {
+    this.embalagem = '';
+    this.unidades = 0;
+    this.hectolitros = 0;
   }
 
 }

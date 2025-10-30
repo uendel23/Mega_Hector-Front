@@ -6,20 +6,10 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-resultado',
+   standalone: true,
   imports: [MatDialogModule, MatButtonModule, CommonModule],
-  template: `
-    <h2 mat-dialog-title>Resultado do Cálculo</h2>
-    <mat-dialog-content>
-      <p *ngIf="data.resultado"> O resultado é: {{data.resultado}} embalagens</p>
-      <p *ngIf="data.erro" class="erro">{{data.erro}}</p>
-    </mat-dialog-content>
-    <mat-dialog-actions>
-      <button mat-button [mat-dialog-close]>Fechar</button>
-    </mat-dialog-actions>
-  `,
-  styles: [`
-    .erro { color: red; }
-  `]
+  templateUrl: './resultado.html',
+  styleUrl: './resultado.css'
 })
 
 export class Resultado {
