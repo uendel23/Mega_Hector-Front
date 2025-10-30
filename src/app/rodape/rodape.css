@@ -1,0 +1,43 @@
+.rodape {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background: #000000;
+    width: 100%;
+}
+
+.lista__rodape {
+    list-style: none;
+    display: inline-block;
+    color: #d8d0d0;
+    font-size: 20px;
+    padding:  0 2rem;
+    text-decoration: none;
+    margin-bottom: 2rem;
+}
+
+.logo_insta{
+    width: 3.5rem;
+    margin-left: 3rem;
+    margin-top: 1rem;
+
+}
+
+.logo-git{
+    width: 3.5rem;
+    margin-left: 2.7rem;
+    margin-top: 1rem;
+
+}
+
+.logo_linkedin{
+    width: 3.5rem;
+    margin-left: 2.7rem;
+    margin-top: 1rem;
+
+}
+
+.desenvolvido{
+  color: #fff;
+}
