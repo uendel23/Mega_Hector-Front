@@ -32,7 +32,7 @@ export class Home {
         next: (response) => {
           this.dialog.open(Resultado, {
             data: { resultado: response.resultado },
-            width: '300px'
+            width: '500px'
           });
         },
         error: (error) => {

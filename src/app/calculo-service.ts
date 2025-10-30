@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CalculoService {
-  private apiUrl = 'URL_DA_API';
+  private apiUrl = 'http://localhost:8080/dados/calculo';
 
   constructor(private http: HttpClient) {}
 
