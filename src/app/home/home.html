@@ -1,0 +1,33 @@
+
+<div class="formulario">
+    <div class="embalagem">
+      <mat-form-field>
+          <mat-label>embalagem</mat-label>
+          <mat-select  [(ngModel)]="embalagem">
+              <mat-option value="200ml">200ml</mat-option>
+              <mat-option value="269ml">269ml</mat-option>
+              <mat-option value="300ml">300ml</mat-option>
+              <mat-option value="350ml">350ml</mat-option>
+              <mat-option value="473ml">473ml</mat-option>
+              <mat-option value="500ml">500ml</mat-option>
+              <mat-option value="600ml">600ml</mat-option>
+              <mat-option value="1000ml">1000ml</mat-option>
+              <mat-option value="2000ml">2000ml</mat-option>
+          </mat-select>
+      </mat-form-field>
+    </div>
+      <mat-form-field>
+          <mat-label>Unidades por Embalagem:</mat-label>
+          <input matInput [(ngModel)]="unidades" type="number">
+      </mat-form-field>
+
+      <mat-form-field>
+          <mat-label>Hectorlitros</mat-label>
+          <input matInput [(ngModel)]="hectolitros" type="number">
+      </mat-form-field>
+
+      <button mat-raised-button (click)="calcular()">Calcular</button>
+
+</div>
+
+<router-outlet></router-outlet>

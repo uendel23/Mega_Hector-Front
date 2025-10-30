@@ -1,0 +1,23 @@
+thead{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #831414;
+  height: 300px;
+   width: 100%;
+}
+
+.cabecalho {
+  display: flex;
+
+}
+
+.cabecalho h1 {
+  color: white;
+  font-size: 2.5rem;
+}
+
+.cabecalho img {
+  height: 100px;
+padding: 0 20px;
+}

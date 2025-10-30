@@ -18,17 +18,14 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "src/assets",
+                "output": "/assets"
               }
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.css"
-            ],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            ]
           },
           "configurations": {
             "production": {
@@ -86,5 +83,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "e37869f6-8bc8-4657-aa43-c010ffc57c8c"
   }
 }
