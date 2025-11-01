@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CalculoService {
-  private apiUrl = 'http://localhost:8080/dados/calculo';
+  private apiUrl = 'https://megahector.onrender.com';
 
   constructor(private http: HttpClient) {}
 
