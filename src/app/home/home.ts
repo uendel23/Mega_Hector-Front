@@ -3,7 +3,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterOutlet } from '@angular/router';
-import { Toolbar } from '../toolbar/toolbar';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { Resultado } from '../resultado/resultado';
@@ -14,13 +13,13 @@ import { HttpClientModule} from '@angular/common/http';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, RouterOutlet,  Toolbar, FormsModule, Resultado, MatDialogModule, HttpClientModule,],
+  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, RouterOutlet, FormsModule, Resultado, MatDialogModule, HttpClientModule,],
   templateUrl: './home.html',
   styleUrl: './home.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Home {
-  embalagem: string = '';
+  embalagem: number = 0;
   unidades: number = 0;
   hectolitros: number = 0;
 
@@ -29,6 +28,17 @@ export class Home {
     private calculoService: CalculoService) {}
 
   calcular() {
+     const embalagemNum = Number(this.embalagem);
+     const unidadesNum = Number(this.unidades);
+     const hectolitrosNum = Number(this.hectolitros);
+
+  if (!embalagemNum || !unidadesNum || !hectolitrosNum) {
+    this.dialog.open(Resultado, {
+      data: { erro: 'Preencha todos os campos corretamente antes de calcular.' },
+      width: '350px'
+    });
+    return;
+  }
     this.calculoService.calcularResultado(this.embalagem, this.unidades, this.hectolitros)
       .subscribe({
         next: (response) => {
@@ -56,7 +66,7 @@ export class Home {
   }
 
   private limparCampos() {
-    this.embalagem = '';
+    this.embalagem = 0;
     this.unidades = 0;
     this.hectolitros = 0;
   }

@@ -9,9 +9,11 @@ import { CommonModule } from '@angular/common';
    standalone: true,
   imports: [MatDialogModule, MatButtonModule, CommonModule],
   templateUrl: './resultado.html',
-  styleUrl: './resultado.css'
+  styleUrls: ['./resultado.css']
 })
 
 export class Resultado {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {resultado?: number; erro?: string}) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {resultado: number; erro?: string}) {
+    console.log('Dado recebido no dialog:', this.data);
+  }
 }
